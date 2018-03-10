@@ -11,6 +11,8 @@ WHITE = [255, 255, 255]
 RED = (230, 30, 30)
 BLUE = (30, 30, 230)
 BLACK = (0, 0, 0)
+GREEN = (0, 200, 0)
+BRIGHT_GREEN = (0, 255, 0)
 
 # Game Board
 verticalLine_1 = pygame.draw.line(gameDisplay, BLACK, (244, 100), (244, 500), 3)
@@ -36,6 +38,12 @@ class Cross(pygame.sprite.Sprite):
 playerCross = Cross(WHITE, 30, 30)  # Creates cross object
 
 
+# Text Adder
+def text_objects(text, font):
+    text_surface = font.render(text, True, BLACK)
+    return text_surface, text_surface.get_rect()
+
+
 # ___Main Game-loop___
 lost = False
 
@@ -54,17 +62,25 @@ while not lost:
     mouse_position_x = int(mouse_position[0])
     mouse_position_y = int(mouse_position[1])
     # print(mouse_position)
-       
+
     # Draws a Nut on click 
-    if mouse_state == (1, 0, 0):
+    if mouse_state == (1, 0, 0):  # TODO: Add condition for within playing area
         pygame.draw.circle(gameDisplay, BLACK, mouse_position, 30, 5)  # Nut Sprite
 
     # Draws Cross
-    if mouse_state == (0, 0, 1):
+    if mouse_state == (0, 0, 1):  # TODO: Add condition for within playing area
         playerCross.nut(mouse_position_x, mouse_position_y)
 
+    # Draws Button
+    if 36+78 > mouse_position_x > 36 and 26+47 > mouse_position_y > 26:
+        pygame.draw.rect(gameDisplay, BRIGHT_GREEN, (36, 26, 78, 47))
+    else:
+        pygame.draw.rect(gameDisplay, GREEN, (36, 26, 78, 47))
 
-                     
+    smallText = pygame.font.Font("freesansbold.ttf", 20)
+    textSurf, textRect = text_objects("Clear!", smallText)
+    textRect.center = ((36+(78/2)), (26+(48/2)))
+    gameDisplay.blit(textSurf, textRect)
 
 pygame.quit()
 quit()
