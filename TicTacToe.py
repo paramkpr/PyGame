@@ -30,8 +30,11 @@ while not lost:
     clock.tick(60)
 
     mouse_state = pygame.mouse.get_pressed()
-    mouse_position = pygame.mouse.get_pos()
-
+    print(mouse_state)
+    global mouse_position
+    mouse_position = list(pygame.mouse.get_pos())
+    mouse_position_x = int(mouse_position[0])
+    mouse_position_y = int(mouse_position[1])
            
     # Draws a Nut on click 
     if mouse_state == (1,0,0):
@@ -47,5 +50,13 @@ while not lost:
             self.image.set_colorkey(WHITE)
             self.image = pygame.image.load("res/cross.png").convert_alpha()
 
-         
+        def nut(self, abscissa, ordinate):
+            gameDisplay.blit(self.image, (abscissa, ordinate))
+            
+    playerCross = cross(WHITE, 30, 30)
+
+    #Draws Cross
+    if mouse_state == (0,0,1):
+        playerCross.nut(mouse_position_x, mouse_position_y)
+
 pygame.quit()
