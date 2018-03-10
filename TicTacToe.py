@@ -6,6 +6,7 @@ gameDisplay.fill([255, 255, 255]) # Sets background color to white.
 pygame.display.set_caption('Tic Tac Toe')
 clock = pygame.time.Clock()
 
+WHITE = [255, 255, 255]
 RED = (230,30,30)
 BLUE = (30,30,230)
 BLACK = (0,0,0)
@@ -36,15 +37,15 @@ while not lost:
     if mouse_state == (1,0,0):
         pygame.draw.circle(gameDisplay, RED, mouse_position, 30, 2)
 
-    #Draws Cross
-    def drawCross(screen, pos):
-        points = [(100,100), (130,70), (130,100), (100,70)]
-        pygame.draw.lines(gameDisplay, BLUE, False, points, 2)
+    #Cross Sprite
+    class cross(pygame.sprite.Sprite):
 
-    # Draws a Cross on click
-    if mouse_state == (0,0,1):
-         mouse_position_cross = pygame.mouse.get_pos()
-         drawCross(gameDisplay, mouse_position_cross)
+        def __init__(self, color, width, height):
+            super().__init__() # Calls constructor from parent class
+            self.image = pygame.Surface([30,30])
+            self.image.fill(WHITE)
+            self.image.set_colorkey(WHITE)
+            self.image = pygame.image.load("cross.png").convert_alpha()
 
          
 pygame.quit()
