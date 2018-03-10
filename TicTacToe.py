@@ -45,7 +45,7 @@ while not lost:
             self.image = pygame.Surface([30,30])
             self.image.fill(WHITE)
             self.image.set_colorkey(WHITE)
-            self.image = pygame.image.load("cross.png").convert_alpha()
+            self.image = pygame.image.load("res/cross.png").convert_alpha()
 
          
 pygame.quit()
