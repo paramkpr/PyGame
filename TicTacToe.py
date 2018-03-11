@@ -61,14 +61,18 @@ while not lost:
     mouse_position = tuple(pygame.mouse.get_pos())  # Cursor Position Properties
     mouse_position_x = int(mouse_position[0])
     mouse_position_y = int(mouse_position[1])
-    print(mouse_position)
+    "print(mouse_position)"
+
+    #Key Properties
+    key_state = list(pygame.key.get_pressed())[113]
+    print(key_state)
 
     # Draws a Nut on click 
-    if mouse_state == (1, 0, 0) and 100 > mouse_position_x < 670 and 100 > mouse_position_y < 350:
+    if mouse_state == (1, 0, 0):
         pygame.draw.circle(gameDisplay, BLACK, mouse_position, 30, 5)  # Nut Sprite
 
-    # Draws Cross
-    if mouse_state == (0, 0, 1)and 100 > mouse_position_x < 610 and 100 > mouse_position_y < 350:  
+    # Draws Cross 
+    if mouse_state == (0, 0, 1):  
         playerCross.nut(mouse_position_x, mouse_position_y)
 
     # Draws Button
