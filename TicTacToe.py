@@ -15,11 +15,11 @@ GREEN = (0, 200, 0)
 BRIGHT_GREEN = (0, 255, 0)
 
 # Game Board
-verticalLine_1 = pygame.draw.line(gameDisplay, BLACK, (244, 100), (244, 500), 3)
-verticalLine_2 = pygame.draw.line(gameDisplay, BLACK, (556, 100), (556, 500), 3)
+verticalLine_1 = pygame.draw.line(gameDisplay, BLACK, (270, 100), (270, 500), 3)
+verticalLine_2 = pygame.draw.line(gameDisplay, BLACK, (530, 100), (530, 500), 3)
 horizontalLine_1 = pygame.draw.line(gameDisplay, BLACK, (100, 230), (700, 230), 3)
 horizontalLine_2 = pygame.draw.line(gameDisplay, BLACK, (100, 366), (700, 366), 3)
-
+ref_rect = pygame.draw.rect(gameDisplay, BLACK,(100, 100, 602, 402), 1)
 
 # Cross Sprite
 class Cross(pygame.sprite.Sprite):
@@ -61,14 +61,14 @@ while not lost:
     mouse_position = tuple(pygame.mouse.get_pos())  # Cursor Position Properties
     mouse_position_x = int(mouse_position[0])
     mouse_position_y = int(mouse_position[1])
-    " print(mouse_position) "
+    print(mouse_position)
 
     # Draws a Nut on click 
-    if mouse_state == (1, 0, 0):  # TODO:Add condition for within playing area
+    if mouse_state == (1, 0, 0) and 100 > mouse_position_x < 670 and 100 > mouse_position_y < 350:
         pygame.draw.circle(gameDisplay, BLACK, mouse_position, 30, 5)  # Nut Sprite
 
     # Draws Cross
-    if mouse_state == (0, 0, 1):  # TODO:Add condition for within playing area
+    if mouse_state == (0, 0, 1)and 100 > mouse_position_x < 610 and 100 > mouse_position_y < 350:  
         playerCross.nut(mouse_position_x, mouse_position_y)
 
     # Draws Button
